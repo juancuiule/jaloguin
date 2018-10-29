@@ -1,0 +1,24 @@
+import ninio.*
+import adulto.*
+
+describe "tests para ninos" {
+
+	var hijitus
+	var oaky
+	var abuelito
+	fixture {
+		hijitus = new Ninio(5, #{})
+		oaky = new Ninio(10, #{})
+		abuelito = new Abuelo()
+	}
+
+	test "hijitus no tiene elementos entonces su capacidad de susto es 0" {
+		assert.equals(0, hijitus.capacidadDeSusto())
+	}
+
+//	test "oaky asusta a un abuelo y recibe caramelos" {
+//		abuelito.recibirSusto(oaky)
+//		assert.equals(2.5, oaky.caramelos())
+//	}
+}
+
