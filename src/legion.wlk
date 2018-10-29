@@ -25,4 +25,9 @@ class Legion inherits Asustador {
 	method lider() {
 		return miembros.max({miembro => miembro.capacidadDeSusto()})
 	}
+	
+	override method elementos() {
+		return miembros.flatMap({miembro => miembro.elementos()})
+	}
+	
 }

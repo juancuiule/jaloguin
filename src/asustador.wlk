@@ -14,5 +14,7 @@ class Asustador {
 
 	method recibirCaramelos(cantidad)
 
+	method elementos()
+
 }
 

@@ -22,6 +22,8 @@ class Ninio inherits Asustador {
 	override method recibirCaramelos(cantidad) {
 		caramelos += cantidad
 	}
+	
+	override method elementos() = elementos
 
 }
 
