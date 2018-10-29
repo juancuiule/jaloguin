@@ -1,19 +1,30 @@
 import ninio.*
 import adulto.*
+import elementosDeSusto.*
 
 describe "tests para ninos" {
 
 	var hijitus
 	var oaky
 	var abuelito
+	var trajeWinnie = new TrajeTierno()
+	var trajeSullivan = new TrajeTierno()
+	var trajeJason = new TrajeTerrorifico()
+	var trajeBush = new TrajeTerrorifico()
+	var maquillaje = new Maquillaje()
+
 	fixture {
 		hijitus = new Ninio(5, #{})
-		oaky = new Ninio(10, #{})
+		oaky = new Ninio(10, #{ trajeWinnie, maquillaje })
 		abuelito = new Abuelo()
 	}
 
 	test "hijitus no tiene elementos entonces su capacidad de susto es 0" {
 		assert.equals(0, hijitus.capacidadDeSusto())
+	}
+
+	test "oaky tiene 10 de actitud, un traje tierno (winnie) y un maquillaje, por lo tanto su capacidad de susto es de 50" {
+		assert.equals(50, oaky.capacidadDeSusto())
 	}
 
 //	test "oaky asusta a un abuelo y recibe caramelos" {
