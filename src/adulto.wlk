@@ -1,5 +1,3 @@
-import ninio.*
-
 class Adulto {
 
 	var niniosQueIntentaronAsustarlo = 0

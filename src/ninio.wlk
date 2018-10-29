@@ -1,4 +1,6 @@
-class Ninio {
+import asustador.*
+
+class Ninio inherits Asustador {
 
 	var elementos
 	var actitud
@@ -9,22 +11,17 @@ class Ninio {
 		elementos = elementosIniciales
 	}
 
-	method capacidadDeSusto() {
+	override method capacidadDeSusto() {
 		return elementos.sum({ elemento => elemento.capacidadDeSusto() }) * actitud
 	}
 
-	method asustar(alguien) {
+	override method asustar(alguien) {
 		alguien.recibirSusto(self)
 	}
 
-	method recibirCaramelos(cantidad) {
+	override method recibirCaramelos(cantidad) {
 		caramelos += cantidad
 	}
 
-	method tieneMasDe(cantidad) {
-		return caramelos > cantidad
-	}
-
-	method caramelos() = caramelos
 }
 
