@@ -1,4 +1,4 @@
-class TrajeTerrorificos {
+class TrajeTerrorifico {
 
 	method capacidadDeSusto() = 5
 
