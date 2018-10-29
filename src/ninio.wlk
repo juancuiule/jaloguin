@@ -22,15 +22,17 @@ class Ninio inherits Asustador {
 	override method recibirCaramelos(cantidad) {
 		caramelos += cantidad
 	}
-	
+
 	override method elementos() = elementos
 
 	method comerCaramelos(cantidad) {
-		if(cantidad > caramelos) {
+		if (cantidad > caramelos) {
 			self.error("Un niño no puede comer mas caramelos de los que tiene")
 		}
 		caramelos -= cantidad
 	}
+
+	override method caramelos() = caramelos
 
 }
 

@@ -1,22 +1,31 @@
 import ninio.*
 import adulto.*
 import elementosDeSusto.*
+import legion.*
 
 describe "tests para ninos" {
 
 	var hijitus
+	var superhijitus
 	var oaky
-	var abuelito
+	var doniaMarieta
+	var goldSilver
+	var neurus
+	var legion
 	var trajeWinnie = new TrajeTierno()
-	var trajeSullivan = new TrajeTierno()
-	var trajeJason = new TrajeTerrorifico()
-	var trajeBush = new TrajeTerrorifico()
+	var sombreritus = new TrajeTerrorifico()
 	var maquillaje = new Maquillaje()
 
 	fixture {
 		hijitus = new Ninio(5, #{})
+		superhijitus = new Ninio(9, #{ sombreritus })
+		superhijitus.recibirCaramelos(16)
 		oaky = new Ninio(10, #{ trajeWinnie, maquillaje })
-		abuelito = new Abuelo()
+		oaky.recibirCaramelos(20)
+		doniaMarieta = new Abuelo()
+		goldSilver = new AdultoNecio()
+		neurus = new Adulto()
+		legion = new Legion(#{ hijitus, superhijitus, oaky })
 	}
 
 	test "hijitus no tiene elementos entonces su capacidad de susto es 0" {
@@ -27,9 +36,55 @@ describe "tests para ninos" {
 		assert.equals(50, oaky.capacidadDeSusto())
 	}
 
-//	test "oaky asusta a un abuelo y recibe caramelos" {
-//		abuelito.recibirSusto(oaky)
-//		assert.equals(2.5, oaky.caramelos())
-//	}
+	test "los adultos necios nunca se asustan" {
+		assert.notThat(goldSilver.seAsustaCon(hijitus))
+	}
+
+	test "superhijitus asusta dos veces a neurus" {
+		neurus.niniosQueIntentaronAsustarlo(1) // esto es para que su tolerancia no sea 0
+		superhijitus.asustar(neurus)
+		assert.equals(21, superhijitus.caramelos())
+	}
+
+	test "oaky asusta a un abuelo y recibe caramelos" {
+		doniaMarieta.niniosQueIntentaronAsustarlo(1) // esto es para que su tolerancia no sea 0
+		doniaMarieta.recibirSusto(oaky)
+		assert.equals(22.5, oaky.caramelos())
+	}
+
+	test "la capacidad de asustar la legion es la suma de la capacidad de sus miembros (95)" {
+		// hijitus = 0 * 5 = 0
+		// superhijitus = 5 * 9 = 45
+		// oaky = 10 * 5 = 50
+		// legion = 95
+		assert.equals(95, legion.capacidadDeSusto())
+	}
+
+	test "la cantidad de caramelos de la legion es la suma de los caramelos de sus miembros (36)" {
+		// hijitus = 0
+		// superhijitus = 16
+		// oaky = 20
+		// legion = 36
+		assert.equals(36, legion.caramelos())
+	}
+
+	test "oaky es el lider de la legion por tener la mayor capacidad de asustar" {
+		assert.equals(oaky, legion.lider())
+	}
+
+	test "cuando la legion asusta, el que recibe los caramelos es el lider" {
+		doniaMarieta.niniosQueIntentaronAsustarlo(1) // esto es para que su tolerancia no sea 0
+		legion.asustar(doniaMarieta)
+		assert.equals(22.5, oaky.caramelos())
+	}
+
+	test "al crear una legion esta tiene que tener al menos 2 integrantes" {
+		assert.throwsExceptionWithMessage("La legion no puede tener menos de 2 integrantes", { var legionInconsistente = new Legion(#{ oaky })})
+	}
+
+	test "hijitus no puede comer 5 caramelos porque no los tiene" {
+		assert.throwsExceptionWithMessage("Un niño no puede comer mas caramelos de los que tiene", { hijitus.comerCaramelos(5)})
+	}
+
 }
 

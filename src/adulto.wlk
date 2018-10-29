@@ -27,6 +27,10 @@ class Adulto {
 		}
 	}
 
+	method niniosQueIntentaronAsustarlo(cantidad) {
+		niniosQueIntentaronAsustarlo = cantidad
+	}
+
 }
 
 class Abuelo inherits Adulto {
@@ -39,7 +43,7 @@ class Abuelo inherits Adulto {
 
 }
 
-class Necio inherits Adulto {
+class AdultoNecio inherits Adulto {
 
 	override method seAsustaCon(asustador) = false
 
